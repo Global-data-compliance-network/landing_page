@@ -5,7 +5,7 @@ var path = require('path');
 
 var root = path.join(__dirname, '..');
 var src = path.join(root, 'node_modules', '@vercel', 'analytics', 'dist', 'index.mjs');
-var destDir = path.join(root, 'gdcn-landing', 'vendor');
+var destDir = path.join(root, 'vendor');
 var dest = path.join(destDir, 'vercel-analytics.mjs');
 
 if (!fs.existsSync(src)) {
@@ -14,4 +14,4 @@ if (!fs.existsSync(src)) {
 }
 fs.mkdirSync(destDir, { recursive: true });
 fs.copyFileSync(src, dest);
-console.log('[copy-vercel-analytics] -> gdcn-landing/vendor/vercel-analytics.mjs');
+console.log('[copy-vercel-analytics] -> vendor/vercel-analytics.mjs');

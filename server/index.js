@@ -52,8 +52,21 @@ app.post('/api/waitlist', async function (req, res) {
   }
 });
 
-app.use(express.static(path.join(__dirname, '..', 'gdcn-landing')));
+var publicRoot = path.join(__dirname, '..');
+app.use(function (req, res, next) {
+  var p = (req.path || '').split('?')[0];
+  if (
+    /^\/(node_modules|server|scripts)(\/|$)/i.test(p) ||
+    /^\/\.git(\/|$)/i.test(p) ||
+    /^\/package(-lock)?\.json$/i.test(p) ||
+    /^\/\.env/i.test(p)
+  ) {
+    return res.status(404).end();
+  }
+  next();
+});
+app.use(express.static(publicRoot));
 
 app.listen(PORT, function () {
-  console.log('Open http://localhost:' + PORT + ' (serves gdcn-landing + POST /api/waitlist)');
+  console.log('Open http://localhost:' + PORT + ' (static site root + POST /api/waitlist)');
 });
