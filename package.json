@@ -2,9 +2,11 @@
   "name": "gdcn-landing",
   "private": true,
   "scripts": {
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "postinstall": "node scripts/copy-vercel-analytics.js"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "pg": "^8.13.0"

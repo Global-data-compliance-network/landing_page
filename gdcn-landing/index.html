@@ -745,5 +745,9 @@ nav.nav-list,ul.nav-list{list-style:none;display:flex;align-items:center;justify
   }
 })();
 </script>
+<script>
+  window.process = window.process || { env: { NODE_ENV: (location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'development' : 'production' } };
+</script>
+<script type="module" src="/vendor/analytics-init.js"></script>
 </body>
 </html>
